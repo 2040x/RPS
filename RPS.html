@@ -1,0 +1,113 @@
+<html>
+<head>
+<title> Rock Paper Scissors</title>
+</head>
+<body>
+<p>Rock-Paper-Scissors vs the Computer: First to 3</p>
+<p> Player Score</p>
+<p id ="ps"></p>
+<p>Computer Score</p>
+<p id ="cs"></p>
+<button onclick="game()">Start the Game</button>
+<script>
+ var ps=0;
+ var cs=0;
+ function getPS(){return ps;}
+ function getCS(){return cs;}
+
+ document.getElementById("ps").innerHTML = getPS();
+ document.getElementById("cs").innerHTML = getCS();
+ function computerPlay()
+ {
+  var random =Math.floor(Math.random() * (+4 - +1)) + +1;
+  if(random==1)
+  {
+   return "rock";
+  }
+  else if(random==2)
+  {
+   return "paper";
+  }
+  else
+  {
+   return "scissors";
+  }
+ }
+
+ function playerPick()
+ {
+  var pick=prompt("Please chose Rock, Paper, or Scissors");
+  return pick.toLowerCase(); 
+ }
+ 
+ function gameTurn(player, computer)
+ {
+  if(player===computer)
+  {
+   return "Its a tie! Chose again";
+  }
+  else if(player==="rock")
+  {
+   if(computer==="paper")
+   {
+    cs++;
+    return "You Lose! Paper beats Rock :("
+   }
+   else 
+   {
+    ps++;
+    return "You Win! Rock beats Scissors :)"
+   }
+  }
+  else if(player=="scissors")
+  {
+   if(computer==="rock")
+   {
+    cs++;
+    return "You Lose! Rock beats Scissors :("
+   }
+   else 
+   {
+    ps++;
+    return "You Win! Scissors beats Paper :)"
+   }
+
+  }
+  else
+  {
+   if(computer==="Scissors")
+   {
+    cs++;
+    return "You Lose! Scissors beats Paper :("
+   }
+   else 
+   {
+    ps++;  
+    return "You Win! Paper beats Rock :)"
+   }
+
+  }
+ }
+ function game()
+ {
+  while(cs<3 && ps<3)
+  {
+    document.getElementById("ps").innerHTML = getPS();
+    document.getElementById("cs").innerHTML = getCS();
+    var pp=playerPick();
+    console.log(gameTurn(pp, computerPlay()));
+  }
+  document.getElementById("ps").innerHTML = getPS();
+  document.getElementById("cs").innerHTML = getCS();
+  if(ps>cs)
+  {
+   console.log("You Win!");
+  }
+  else
+  {
+   console.log("You Lose!");
+  }
+ }
+</script>
+</body>
+</html>
