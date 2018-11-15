@@ -36,6 +36,8 @@
 
  function playerPick()
  {
+  document.getElementById("ps").innerHTML = getPS();
+  document.getElementById("cs").innerHTML = getCS();
   var pick=prompt("Please chose Rock, Paper, or Scissors");
   return pick.toLowerCase(); 
  }
@@ -90,22 +92,24 @@
  }
  function game()
  {
-  while(cs<3 && ps<3)
-  {
-    document.getElementById("ps").innerHTML = getPS();
-    document.getElementById("cs").innerHTML = getCS();
-    var pp=playerPick();
-    console.log(gameTurn(pp, computerPlay()));
-  }
   document.getElementById("ps").innerHTML = getPS();
   document.getElementById("cs").innerHTML = getCS();
-  if(ps>cs)
+  if(cs<3 && ps<3)
   {
-   console.log("You Win!");
+    var pp=playerPick();
+    console.log(gameTurn(pp, computerPlay()));
+    game();
   }
   else
   {
-   console.log("You Lose!");
+   if(ps>cs)
+   {
+    console.log("You Win!");
+   }
+   else
+   {
+    console.log("You Lose!");
+   }
   }
  }
 </script>
