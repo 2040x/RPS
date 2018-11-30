@@ -3,12 +3,15 @@
 <title> Rock Paper Scissors</title>
 </head>
 <body>
-<p>Rock-Paper-Scissors vs the Computer: First to 3</p>
+<p>Rock-Paper-Scissors vs the Computer</p>
+<button onclick="game('rock')">Rock</button>
+<button onclick="game('paper')">Paper</button>
+<button onclick="game('scissors')">Scissors</button>
 <p> Player Score</p>
 <p id ="ps"></p>
 <p>Computer Score</p>
 <p id ="cs"></p>
-<button onclick="game()">Start the Game</button>
+<div id="container"></div>
 <script>
  var ps=0;
  var cs=0;
@@ -90,26 +93,22 @@
 
   }
  }
- function game()
+ function game(pp)
  {
+  document.getElementById("container").innerHTML =gameTurn(pp, computerPlay());
   document.getElementById("ps").innerHTML = getPS();
   document.getElementById("cs").innerHTML = getCS();
-  if(cs<3 && ps<3)
+  if(getPS()==5)
   {
-    var pp=playerPick();
-    console.log(gameTurn(pp, computerPlay()));
-    game();
+   document.getElementById("container").innerHTML = "You Win This Round! :)";
+   cs=0;
+   ps=0;
   }
-  else
+  if(getCS()==5)
   {
-   if(ps>cs)
-   {
-    console.log("You Win!");
-   }
-   else
-   {
-    console.log("You Lose!");
-   }
+   document.getElementById("container").innerHTML = "You Lose This Round! :(";
+   cs=0;
+   ps=0;
   }
  }
 </script>
